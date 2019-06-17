@@ -96,7 +96,7 @@ extern sll_node_t * sll_find_loop_start(struct sll_t *list);
 extern sll_node_t * sll_find_intersection(struct sll_t *list1, struct sll_t *list2);
 extern sll_node_t * sll_get_kth_node(struct sll_t *list,  int k);
 extern bool         sll_is_palindrome(sll_t *list);
-
+extern void         sll_remove_duplicates(sll_t *list);
 #ifdef __cplusplus
 }
 #endif

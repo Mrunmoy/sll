@@ -314,6 +314,28 @@ sll_t *sll_create_copy(sll_t *list) {
     return result;
 }
 
+void sll_remove_duplicates(sll_t *list) {
+    if (NULL == list || 0 == list->count) return;
+    sll_node_t *current = list->head;
+    while(current) {
+        sll_node_t *runner = current;
+        while(runner->next != NULL) {
+            if (runner->next->size == current->size &&
+                 memcmp(runner->next->value, current->value, current->size) == 0)
+            {
+                sll_node_t *temp = runner->next;
+                runner->next = runner->next->next;
+                sll_node_free(temp);
+                list->count--;
+            }
+            else {
+                runner = runner->next;
+            }
+        }
+        current = current->next;
+    }
+}
+
 sll_t *sll_new(void) {
     sll_t * item = malloc(sizeof(sll_t));
     if (item) {

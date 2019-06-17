@@ -79,6 +79,15 @@ int main() {
         printf("\n");
         printf("is palindrome: %s\n", sll_is_palindrome(list) ? "true": "false");
 
+
+        sll_remove_duplicates(list);
+        n = sll_traverse(list, b);
+        for (int i = 0; i < n; i++) {
+            int *obj  = b[i];
+            printf("%3d ", *obj);
+        }
+        printf("\n");
+
         sll_free(list);
     }
     return 0;
