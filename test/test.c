@@ -46,10 +46,12 @@ int main() {
 
 
         list = sll_new();
-        int val = 1;
+
+        int val = 0;
         sll_append(list, &val, sizeof(val));
-        val = 2;
+        val = 0;
         sll_append(list, &val, sizeof(val));
+#if 0
         val = 3;
         sll_append(list, &val, sizeof(val));
         val = 4;
@@ -60,7 +62,7 @@ int main() {
         sll_append(list, &val, sizeof(val));
         val = 1;
         sll_append(list, &val, sizeof(val));
-
+#endif
         n = sll_traverse(list, b);
         for (int i = 0; i < n; i++) {
             int *obj  = b[i];
@@ -68,7 +70,7 @@ int main() {
         }
         printf("\n");
         printf("is palindrome: %s\n", sll_is_palindrome(list) ? "true": "false");
-
+#if 0
         val = 5;
         sll_append(list, &val, sizeof(val));
         n = sll_traverse(list, b);
@@ -78,8 +80,8 @@ int main() {
         }
         printf("\n");
         printf("is palindrome: %s\n", sll_is_palindrome(list) ? "true": "false");
-
-
+#endif
+#if 0
         sll_remove_duplicates(list);
         n = sll_traverse(list, b);
         for (int i = 0; i < n; i++) {
@@ -87,6 +89,9 @@ int main() {
             printf("%3d ", *obj);
         }
         printf("\n");
+
+#endif
+
 
         sll_free(list);
     }

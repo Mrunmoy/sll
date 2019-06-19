@@ -279,22 +279,24 @@ sll_node_t * sll_find_intersection(struct sll_t *list1, struct sll_t *list2) {
 
 
 static bool is_palindrome_helper(sll_node_t *head, sll_node_t **next, int length) {
-    if ( NULL == head  || length <= 0)
-        return false;
+    if ( NULL == head  || length <= 0) {
+        *next = head;
+        return true;
+    }
     else if (length == 1) {
         *next = head->next;
         return true;
     }
 
-    if (is_palindrome_helper(head->next, next, length - 2)) {
-        if (*next) {
-            if (head->size == (*next)->size && memcmp(head->value, (*next)->value, head->size) == 0) {
-                *next = (*next)->next;
-                return true;
-            }
-        }
+    bool result = is_palindrome_helper(head->next, next, length - 2);
+    if (!result || !*next) return result;
+
+    result = false;
+    if (head->size == (*next)->size && memcmp(head->value, (*next)->value, head->size) == 0) {
+        *next = (*next)->next;
+        result = true;
     }
-    return false;
+    return result;
 }
 
 bool sll_is_palindrome(sll_t *list) {
